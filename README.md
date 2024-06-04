@@ -112,14 +112,14 @@ Frågor:
 1\. Hur fungerar *stacken* och *heapen*? Förklara gärna med exempel
 eller skiss på dess grundläggande funktion
 
-<img src="./img/5uq10aqa.png"
-style="width:1.9375in;height:3.3168in" />
-
 2\. Vad är *Value* *Types* respektive *Reference* *Types* och vad
 skiljer dem åt?
 
 3\. Följande metoder (*se* *bild* *nedan*) genererar olika svar.Den
 första returnerar 3, den andra returnerar 4, varför?
+
+<img src="./img/5uq10aqa.png"
+style="width:1.9375in;height:3.3168in" />
 
 
 **Datastrukturer** **och** **minneseffektivitet**
@@ -133,7 +133,7 @@ kod. Kom ihåg att kommentera all kod.
 skalprojektet och frågorna</u> <u>besvaras på relevant plats med
 kommentarer i koden.</u>
 
-*Övning* *1:* *ExamineList()*
+***Övning* *1:* *ExamineList()***
 
 En lista är en *abstrakt* *datastruktur* som kan implementeras på flera
 olika sätt. Till skillnad från ***arrayer***har *listor* inte en
@@ -154,7 +154,7 @@ används *Capacity-metoden* i *Listklassen*.
 
 6\. När är det då fördelaktigt att använda en egendefinierad *array* istället för en lista?
 
-*Övning* *2:* *ExamineQueue()*
+***Övning* *2:* *ExamineQueue()***
 
 Datastrukturen ***kö*** (implementerad i ***Queue-klassen***) fungerar
 enligt **Först** **In** **Först** **Ut** **(*FIFO*)** principen. Alltså
@@ -178,7 +178,7 @@ h\. …
 *Queue-klassen* till hjälp för att implementera metoden. Simulera
 sedan ICA-kön med hjälp av ditt program.
 
-*Övning* *3:* *ExamineStack()*
+***Övning* *3:* *ExamineStack()***
 
 Stackar påminner om köer, men en stor skillnad är att stackar använder
 sig av **Först** **In** **Sist** **Ut** **(*FILO***) principen. Alltså
@@ -193,7 +193,7 @@ fallet?
 användaren och med hjälp av en stack vänder ordning på teckenföljden
 för att sedan skriva ut den omvända strängen till användaren.
 
-*Övning* *4:* *CheckParenthesis()*
+***Övning* *4:* *CheckParenthesis()***
 
 Ni bör nu ha tillräckliga kunskaper om ovannämnda datastrukturer för att
 lösa följande problem.
@@ -220,9 +220,6 @@ datastruktur använder du?
 programmet läsa in en *sträng* från användaren och returnera ett svar
 som reflekterar huruvida strängen är välformad eller ej.
 
-<img src="./img/5bfz0itd.png"
-style="width:3.71417in;height:1.56389in" />
-
 **Rekursion** **och** **Iteration** **(Extra** **om** **tid** **finns)**
 
 För att ta reda på mer om hur viktigt det är att tänka på hur mycket som
@@ -236,30 +233,33 @@ och därefter gör alla beräkningar upp till det anrop som initierade
 rekursionen. Nedan följer ett exempel på hur en rekursiv metod kan
 beräkna det n:te udda talet.
 
+<img src="./img/5bfz0itd.png"
+style="width:3.71417in;height:1.56389in" />
+
 Det metoden gör är att se efter om *n* är *1*, om så returerar den det
 första udda talet *1*. Annars så anropar den sig själv för ett mindre
 *n* och lägger till två.
 
-*Övning* *5:* *Rekursion*
+***Övning* *5:* *Rekursion***
 
 1\. Illustrera förloppen för RecursiveOdd(1), RecursiveOdd(3) och
 RecursiveOdd(5) på papper för att förstå den rekursiva loopen.
 
 2\. Skriv en *RecursiveEven(int* *n)* metod som rekursivt beräknar det
-*n*:te <u>jämna</u> talet. 3. Implementera en rekursiv funktion för
-att beräkna tal i *fibonaccisekvensen:* *(f(n)* *=*
+*n*:te <u>jämna</u> talet. 
 
+3\. Implementera en rekursiv funktion för att beräkna tal i *fibonaccisekvensen:* *(f(n)* *=*
 *f(n-1)* *+* *f(n-2))*
 
-<img src="./img/nweyu1q4.png"
-style="width:3.49555in;height:1.93542in" />
-
-*Övning* *6:* *Iteration*
+***Övning* *6:* *Iteration***
 
 Nu när ni är bekanta med rekursion är det dags att kolla på iteration.
 Iteration är en funktion som upprepar samma sak till dess att målet är
 uppnått. Så en iterativ funktion för att göra föregående beräkning om
 det n:te udda talet skulle se ut:
+
+<img src="./img/nweyu1q4.png"
+style="width:3.49555in;height:1.93542in" />
 
 Denna metod börjar från 1 och adderar2 till dess att resultat blir det
 *n*:te udda talet.
@@ -268,8 +268,9 @@ Denna metod börjar från 1 och adderar2 till dess att resultat blir det
 *IterativeOdd(3)* och *IterativeOdd(5)* för att förstå iterationen.
 
 2\. Skapa en *IterativeEven(int* *n)* funktion för att iterativt
-beräkna det *n*:te jämna talet. 3. Implementera en iterativ version av
-*fibonacciberäknaren*.
+beräkna det *n*:te jämna talet. 
+
+3\. Implementera en iterativ version av *fibonacciberäknaren*.
 
 Fråga:
 
