@@ -48,19 +48,29 @@ ska vi lära oss mer om de fyra typerna i C#, ***Value*** ***Types***,
 ***Reference*** ***Types***, ***Pointers*** och ***Instructions***.
 
 *Value* *Types* är typer från *System.ValueType* som listas nedan:
-
-||
-||
-||
-
-> 1/7
+> * bool
+> * byte
+> * char
+> * decimal
+> * double
+> * enum
+> * float
+> * int
+> * long
+> * sbyte
+> * short
+> * struct
+> * uint
+> * ulong
+> * ushort
 
 *Reference* *Types* är typer som ärver från *System.Object* (eller är
-*System.Object.object*) *•* *class*
-
-> *•* *interface* *•* *object*
->
-> *•* *delegate* *•* *string*
+*System.Object.object*)
+> * class
+> * interface
+> * object
+> * delegate
+> * string
 
 Nästa typ är pointers. Dessa är inget som vi behöver tänka på utan
 behandlas av ***Common*** ***Language*** ***Runtime*** ***(CLR)**.* En
@@ -74,43 +84,43 @@ att det finns.
 
 Hur vet vi då vad som lagras vart?
 
-<img src="./img/erof5y42.png"
-style="width:3.80306in;height:1.62986in" />En *reference* *type* lagras
+En *reference* *type* lagras
 alltid på *heapen*. Medan *Value* *types*, lagras där de deklareras.
 Alltså kan *value* *types* lagras både på *stacken* eller *heapen*.
 Följande exempel kan ge mer klarhet:
 
+<img src="./img/erof5y42.png"
+style="width:3.80306in;height:1.62986in" />
+
 Denna metod (*se* *bild* *ovan*) kommer allt att köras på stacken.Detta
 då alla *value* *types* deklareras i en metod, som läggs på stacken.
 
-> <img src="./img/pv04oiho.png"
-> style="width:2.87944in;height:2.09028in" />I exemplet till vänster
-> kommer dock *MyValue* att ligga på *heapen*, då den deklarerats i en
-> klass som är en *reference* *type.*
->
-> Den huvudsakliga skillnaden mellan dessa två, är att all information i
-> det första exemplet kommer att raderas närdet är färdigkört då stacken
-> rensar sig själv, medan *MyInt*:en från exempel två kommer fortsätta
-> ta upp plats på *heapen* även efter *stacken* är klar med den. Den
-> kommer ligga där tills *GC* *(Garbage* *Collector)* tar hand om den.
+<img src="./img/pv04oiho.png"
+style="width:2.87944in;height:2.09028in" />I exemplet till vänster
+kommer dock *MyValue* att ligga på *heapen*, då den deklarerats i en
+klass som är en *reference* *type.*  
+
+
+Den huvudsakliga skillnaden mellan dessa två, är att all information i
+det första exemplet kommer att raderas närdet är färdigkört då stacken
+rensar sig själv, medan *MyInt*:en från exempel två kommer fortsätta
+ta upp plats på *heapen* även efter *stacken* är klar med den. Den
+kommer ligga där tills *GC* *(Garbage* *Collector)* tar hand om den.
 
 Frågor:
 
-> 1\. Hur fungerar *stacken* och *heapen*? Förklara gärna med exempel
-> eller skiss på dess grundläggande funktion
->
-> 2/7
+1\. Hur fungerar *stacken* och *heapen*? Förklara gärna med exempel
+eller skiss på dess grundläggande funktion
 
 <img src="./img/5uq10aqa.png"
 style="width:1.9375in;height:3.3168in" />
 
-> 2\. Vad är *Value* *Types* respektive *Reference* *Types* och vad
-> skiljer dem åt?
->
-> 3\. Följande metoder (*se* *bild* *nedan*) genererar olika svar.Den
-> första returnerar 3, den andra returnerar 4, varför?
->
-> 3/7
+2\. Vad är *Value* *Types* respektive *Reference* *Types* och vad
+skiljer dem åt?
+
+3\. Följande metoder (*se* *bild* *nedan*) genererar olika svar.Den
+första returnerar 3, den andra returnerar 4, varför?
+
 
 **Datastrukturer** **och** **minneseffektivitet**
 
@@ -132,17 +142,17 @@ i listan ökar. ***Listklassen*** har dock en underliggande *array* som
 ni nu ska undersöka. För att se storleken på listans underliggande array
 används *Capacity-metoden* i *Listklassen*.
 
-> 1\. Skriv klart implementationen av *ExamineList-metoden* så att
-> undersökningen blir genomförbar.
->
-> 2\. När ökar listans kapacitet? (Alltså den underliggande arrayens
-> storlek) 3. Med hur mycket ökar kapaciteten?
->
-> 4\. Varför ökar inte listans kapacitet i samma takt som element läggs
-> till? 5. Minskar kapaciteten när element tas bort ur listan?
->
-> 6\. När är det då fördelaktigt att använda en egendefinierad *array*
-> istället för en lista?
+1\. Skriv klart implementationen av *ExamineList-metoden* så att undersökningen blir genomförbar.
+
+2\. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek) 
+
+3\. Med hur mycket ökar kapaciteten?
+
+4\. Varför ökar inte listans kapacitet i samma takt som element läggs till? 
+ 
+5\. Minskar kapaciteten när element tas bort ur listan?
+
+6\. När är det då fördelaktigt att använda en egendefinierad *array* istället för en lista?
 
 *Övning* *2:* *ExamineQueue()*
 
@@ -150,23 +160,23 @@ Datastrukturen ***kö*** (implementerad i ***Queue-klassen***) fungerar
 enligt **Först** **In** **Först** **Ut** **(*FIFO*)** principen. Alltså
 att det element som läggs till först kommer vara det som tas bort först.
 
-> 1\. Simulera följande kö på papper:
->
-> a\. ICA öppnar och kön till kassan är tom b. Kalle ställer sig i kön
->
-> c\. Greta ställer sig i kön
->
-> d\. Kalle blir expedierad och lämnar kön e. Stina ställer sig i kön
->
-> f\. Greta blir expedierad och lämnar kön g. Olle ställer sig i kön
->
-> h\. …
->
-> 2\. Implementera metoden *ExamineQueue*. Metoden ska simulera hur en
-> *kö* fungerar genom att tillåta användaren att ställa element ikön
-> (***enqueue***) och ta bort element ur kön (***dequeue***). Använd
-> *Queue-klassen* till hjälp för att implementera metoden. Simulera
-> sedan ICA-kön med hjälp av ditt program.
+1\. Simulera följande kö på papper:
+
+a\. ICA öppnar och kön till kassan är tom b. Kalle ställer sig i kön
+
+c\. Greta ställer sig i kön
+
+d\. Kalle blir expedierad och lämnar kön e. Stina ställer sig i kön
+
+f\. Greta blir expedierad och lämnar kön g. Olle ställer sig i kön
+
+h\. …
+
+2\. Implementera metoden *ExamineQueue*. Metoden ska simulera hur en
+*kö* fungerar genom att tillåta användaren att ställa element ikön
+(***enqueue***) och ta bort element ur kön (***dequeue***). Använd
+*Queue-klassen* till hjälp för att implementera metoden. Simulera
+sedan ICA-kön med hjälp av ditt program.
 
 *Övning* *3:* *ExamineStack()*
 
@@ -175,15 +185,13 @@ sig av **Först** **In** **Sist** **Ut** **(*FILO***) principen. Alltså
 gäller att det element som stoppas in först (***push***) är det som
 kommer tas bort sist (***pop***).
 
-> 4/7
->
-> 1\. Simulera ännu en gång ICA-kön på papper. Denna gång med en
-> *stack*. Varför är det inte så smart att använda en *stack* i det här
-> fallet?
->
-> 2\. Implementera en ReverseText-metod som läser in en sträng från
-> användaren och med hjälp av en stack vänder ordning på teckenföljden
-> för att sedan skriva ut den omvända strängen till användaren.
+1\. Simulera ännu en gång ICA-kön på papper. Denna gång med en
+*stack*. Varför är det inte så smart att använda en *stack* i det här
+fallet?
+
+2\. Implementera en ReverseText-metod som läser in en sträng från
+användaren och med hjälp av en stack vänder ordning på teckenföljden
+för att sedan skriva ut den omvända strängen till användaren.
 
 *Övning* *4:* *CheckParenthesis()*
 
@@ -194,25 +202,23 @@ Vi säger att en sträng är *välformad* om alla parenteser som öppnas även
 stängs korrekt. Att en parentes öppnas och stängs korrekt dikteras av
 följanderegler:
 
-> • ), }, \] får enbart förekomma efter respektive (, {, \[
->
-> • Varje parentes som öppnas måste stängas dvs ”(” följs av ”)”
+• ), }, \] får enbart förekomma efter respektive (, {, \[
+
+• Varje parentes som öppnas måste stängas dvs ”(” följs av ”)”
 
 Exempelvis är (\[{}\]({})) välformad men inte ({)}. Vidare kan en sträng
 innehålla andra tecken, t ex är ”List\<int\> lista = new
 List\<int\>(){2, 3, 4};” välformad. Vi bryr oss alltså endast om
 parenteser!
 
-> 1\. Skapa med hjälp av er nya kunskap funktionalitet för att
-> kontrollera en välformad sträng på papper.Du ska använda dig av någon
-> eller några av de datastrukturer vi precis gått igenom. Vilken
-> datastruktur använder du?
->
-> 2\. Implementera funktionaliteten i metoden *CheckParentheses*.Låt
-> programmet läsa in en *sträng* från användaren och returnera ett svar
-> som reflekterar huruvida strängen är välformad eller ej.
->
-> 5/7
+1\. Skapa med hjälp av er nya kunskap funktionalitet för att
+kontrollera en välformad sträng på papper.Du ska använda dig av någon
+eller några av de datastrukturer vi precis gått igenom. Vilken
+datastruktur använder du?
+
+2\. Implementera funktionaliteten i metoden *CheckParentheses*.Låt
+programmet läsa in en *sträng* från användaren och returnera ett svar
+som reflekterar huruvida strängen är välformad eller ej.
 
 <img src="./img/5bfz0itd.png"
 style="width:3.71417in;height:1.56389in" />
@@ -236,41 +242,37 @@ första udda talet *1*. Annars så anropar den sig själv för ett mindre
 
 *Övning* *5:* *Rekursion*
 
-> 1\. Illustrera förloppen för RecursiveOdd(1), RecursiveOdd(3) och
-> RecursiveOdd(5) på papper för att förstå den rekursiva loopen.
->
-> 2\. Skriv en *RecursiveEven(int* *n)* metod som rekursivt beräknar det
-> *n*:te <u>jämna</u> talet. 3. Implementera en rekursiv funktion för
-> att beräkna tal i *fibonaccisekvensen:* *(f(n)* *=*
->
-> *f(n-1)* *+* *f(n-2))*
->
-> 6/7
+1\. Illustrera förloppen för RecursiveOdd(1), RecursiveOdd(3) och
+RecursiveOdd(5) på papper för att förstå den rekursiva loopen.
+
+2\. Skriv en *RecursiveEven(int* *n)* metod som rekursivt beräknar det
+*n*:te <u>jämna</u> talet. 3. Implementera en rekursiv funktion för
+att beräkna tal i *fibonaccisekvensen:* *(f(n)* *=*
+
+*f(n-1)* *+* *f(n-2))*
 
 <img src="./img/nweyu1q4.png"
 style="width:3.49555in;height:1.93542in" />
 
-> *Övning* *6:* *Iteration*
->
-> Nu när ni är bekanta med rekursion är det dags att kolla på iteration.
-> Iteration är en funktion som upprepar samma sak till dess att målet är
-> uppnått. Så en iterativ funktion för att göra föregående beräkning om
-> det n:te udda talet skulle se ut:
->
-> Denna metod börjar från 1 och adderar2 till dess att resultat blir det
-> *n*:te udda talet.
->
-> 1\. Illustrera på papperförloppen för *IterativeOdd(1)*,
-> *IterativeOdd(3)* och *IterativeOdd(5)* för att förstå iterationen.
->
-> 2\. Skapa en *IterativeEven(int* *n)* funktion för att iterativt
-> beräkna det *n*:te jämna talet. 3. Implementera en iterativ version av
-> *fibonacciberäknaren*.
->
-> Fråga:
+*Övning* *6:* *Iteration*
+
+Nu när ni är bekanta med rekursion är det dags att kolla på iteration.
+Iteration är en funktion som upprepar samma sak till dess att målet är
+uppnått. Så en iterativ funktion för att göra föregående beräkning om
+det n:te udda talet skulle se ut:
+
+Denna metod börjar från 1 och adderar2 till dess att resultat blir det
+*n*:te udda talet.
+
+1\. Illustrera på papperförloppen för *IterativeOdd(1)*,
+*IterativeOdd(3)* och *IterativeOdd(5)* för att förstå iterationen.
+
+2\. Skapa en *IterativeEven(int* *n)* funktion för att iterativt
+beräkna det *n*:te jämna talet. 3. Implementera en iterativ version av
+*fibonacciberäknaren*.
+
+Fråga:
 
 Utgå ifrån era nyvunna kunskaper om iteration, rekursion och
 minneshantering. Vilken av ovanstående funktionerär mest minnesvänlig
 och varför?
-
-> 7/7
