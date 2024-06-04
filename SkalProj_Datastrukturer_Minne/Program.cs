@@ -115,12 +115,67 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-			//List<string> theList = new List<string>();
-			//string input = Console.ReadLine();
-			//char nav = input[0];
-			//string value = input.substring(1);
+			List<string> theList = new List<string>();
+			char nav = ' ';
 
-			//switch(nav){...}
+			do
+			{
+				Console.WriteLine("Write 0 to exit to main menu. +Adam to add Adam to list. -Adam to remove Adam from list.");
+
+				// Fetch user input and break out the +/- operator, and its substring.
+				// todo: handle null input from user
+				string input = Console.ReadLine();
+				nav = input[0];
+				string value = input.Substring(1).Trim(); // remove trailing and leading blankspaces
+				switch (nav)
+				{
+					case '+':
+						theList.Add(value);
+						Console.WriteLine($"Added {value} to the List.");
+						Console.WriteLine($"Current list count: {theList.Count}");
+						Console.WriteLine($"Current list capacity: {theList.Capacity}");
+						break;
+					case '-':
+						theList.Remove(value);
+						Console.WriteLine($"Added {value} to the List.");
+						Console.WriteLine($"Current list count: {theList.Count}");
+						Console.WriteLine($"Current list capacity: {theList.Capacity}");
+						break;
+					default:
+						Console.WriteLine("You must start your input with the + or - operator.");
+						break;
+				}
+			} while (nav != '0');
+
+
+			/*
+				Frågor
+				2. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek)
+				Listans kapacitet fördubblas när den underliggande arrayen blir full. Den börjar med att ha plats för 4 element
+				När vi fyllt Listan (och därmed den underliggande arrayen) med 4 element skapas en ny underliggande	array
+				med 8 platser upp, och de 4 värdena vi redan hade flyttas över till den nya arrayen. 
+
+				3. Med hur mycket ökar kapaciteten?
+				Kapaciteten fördubblas varje gång den underliggande arrayen blir full. Jag trodde dock att listan
+				bara skulle öka med 50% tills jag testade, så har jag fått lära mig att det fungerar i andra datastrukturer kurser
+				i alla fall. Troligen finns det någon skalning som gör att om vi hamnar över en viss storlek så ökar vi bara med
+				50% istället. Men jag hittar ingen sådan dokumentation.
+
+				4. Varför ökar inte listans kapacitet i samma takt som element läggs till?
+				Det är en dyr overhead att skapa en ny array och flytta över alla värden, så det är onödigt att göra det för ofta.
+
+				5. Minskar kapaciteten när element tas bort ur listan?
+				Nej, troligen därför att vi redan gjort det dyra och skalat upp. Det finns ingen anledning att skala ner arrayen.
+				Detta känns dock konstigt, om vi allokerar miljontals med minnesplatser till arrayen och sedan tömmer den, borde
+				det vara bra att "fria upp" dessa platser. Det finns dock en metod som heter TrimExcess() som vi kan använda efter
+				att vi tömt en array om vi tycker det är viktigt att krympa den. 
+
+				6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista?
+				Om vi vet hur många element vi behöver lagra och aldrig vill ändra detta är det bättre att vi gör en egen array.
+				En lista kostar massa overhead, men kommer med en hel del bra extrafunktion. Så det beror på vad som är viktigt: 
+				* Enkel tidseffektiv kod att skriva? (billigt att utveckla), välj Lista och använd dess inbyggda funktioner. 
+				* Eller är prestanda väldigt viktigt? (dyrt att utveckla), välj Array och skriv dina egna funktioner för att traversera arrayen. 
+			*/
 		}
 
 		/// <summary>
