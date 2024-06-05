@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 /*
  Frågor:
@@ -123,7 +125,7 @@ namespace SkalProj_Datastrukturer_Minne
 				Console.WriteLine("Write 0 to exit to main menu. +Adam to add Adam to list. -Adam to remove Adam from list.");
 
 				// Fetch user input and break out the +/- operator, and its substring.
-				// todo: handle null input from user
+				// todo: handle null input from user, maybe break out to other method
 				string input = Console.ReadLine();
 				nav = input[0];
 				string value = input.Substring(1).Trim(); // remove trailing and leading blankspaces
@@ -136,8 +138,9 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine($"Current list capacity: {theList.Capacity}");
 						break;
 					case '-':
+						// todo: add logic to find that the list actually contains value before removing
 						theList.Remove(value);
-						Console.WriteLine($"Added {value} to the List.");
+						Console.WriteLine($"Removed {value} from the List.");
 						Console.WriteLine($"Current list count: {theList.Count}");
 						Console.WriteLine($"Current list capacity: {theList.Capacity}");
 						break;
@@ -188,6 +191,35 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+			Queue<string> myQueue = new Queue<string>();
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. +Kalle to add to queue. - to remove from queue");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Substring(1).Trim();
+
+				switch (navigation)
+				{
+					case '+':
+						myQueue.Enqueue(value);
+						Console.WriteLine($"Added {value} to the Queue.");
+						Console.WriteLine($"Current queue count: {myQueue.Count}");
+						break;
+					case '-':
+						Console.WriteLine($"Removed {myQueue.Peek()} from the queue.");
+						// todo: add logic to check peek before dequeue, use tryPeek maybe
+						myQueue.Dequeue();
+						Console.WriteLine($"Current queue count: {myQueue.Count}");
+						break;
+					default:
+						Console.WriteLine("You must start your input with the + or - operator.");
+						break;
+				}
+			}
 		}
 
 		/// <summary>
@@ -211,6 +243,8 @@ namespace SkalProj_Datastrukturer_Minne
              */
 
 		}
+
+
 
 	}
 }
