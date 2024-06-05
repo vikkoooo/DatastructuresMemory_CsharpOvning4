@@ -344,7 +344,12 @@ namespace SkalProj_Datastrukturer_Minne
 			 * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
 			 * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
 			 */
-
+			// setup rules datastructure where we have what matches what
+			// 1. get input
+			// 2. iterate string and put all opening chars to some datastructure and push all closing chars to other datastructure
+			// 3. iterate the opening datastructure and try find its corresponding closer in other datastructure, if match remove both
+			// 4. do above until empty one empty. if both empty its success otherwise its false.
+			// 5. present result.
 		}
 	}
 }
