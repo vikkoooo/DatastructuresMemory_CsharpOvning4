@@ -344,12 +344,95 @@ namespace SkalProj_Datastrukturer_Minne
 			 * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
 			 * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
 			 */
+
 			// setup rules datastructure where we have what matches what
 			// 1. get input
 			// 2. iterate string and put all opening chars to some datastructure and push all closing chars to other datastructure
 			// 3. iterate the opening datastructure and try find its corresponding closer in other datastructure, if match remove both
 			// 4. do above until empty one empty. if both empty its success otherwise its false.
 			// 5. present result.
+
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise write a string that you want to check if paranthesis is correct");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"Paranthesis correct: {CheckParanthesis(value)}");
+						break;
+				}
+			}
+		}
+
+		static bool CheckParanthesis(string text)
+		{
+			// define the pairs, key = openeing and value = closing
+			Dictionary<char, char> pairs = new Dictionary<char, char>
+			{
+				{ '(', ')' },
+				{ '{', '}' },
+				{ '[', ']' },
+				{ '<', '>' }
+			};
+
+			// create datastructures
+			Stack<char> openers = new Stack<char>(); // doesnt matter which order we iterate so stack is efficient
+			LinkedList<char> closers = new LinkedList<char>(); // because of lots of remove in the middle of the list randomly
+
+			// fill datastructures with openers and closers
+			foreach (char c in text)
+			{
+				// check openers
+				if (pairs.ContainsKey(c))
+				{
+					openers.Push(c);
+
+				} // check closers
+				else if (pairs.ContainsValue(c))
+				{
+					closers.AddLast(c);
+				}
+			}
+
+			// easy exit if mismatch in size
+			if (openers.Count != closers.Count)
+			{
+				return false;
+			}
+
+			// now attempt to empty the stack
+			while (openers.Count > 0)
+			{
+				char opener = openers.Peek();
+				char closer = pairs[opener];
+
+				if (closers.Contains(closer))
+				{
+					openers.Pop();
+					closers.Remove(closer);
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+			// we should end up here if both datastructures was cleared successfully
+			if (openers.Count == 0 && closers.Count == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 	}
 }
