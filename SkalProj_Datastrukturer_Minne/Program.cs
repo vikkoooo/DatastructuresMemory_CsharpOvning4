@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 /*
  Frågor:
@@ -63,6 +64,7 @@ namespace SkalProj_Datastrukturer_Minne
 					+ "\n2. Examine a Queue"
 					+ "\n3. Examine a Stack"
 					+ "\n4. CheckParenthesis"
+					+ "\n5. ReverseText using Stack"
 					+ "\n0. Exit the application");
 				char input = ' '; //Creates the character input to be used with the switch-case below.
 				try
@@ -88,6 +90,9 @@ namespace SkalProj_Datastrukturer_Minne
 					case '4':
 						CheckParanthesis();
 						break;
+					case '5':
+						ReverseText();
+						break;
 					/*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
@@ -96,7 +101,7 @@ namespace SkalProj_Datastrukturer_Minne
 						Environment.Exit(0);
 						break;
 					default:
-						Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+						Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5)");
 						break;
 				}
 			}
@@ -143,6 +148,9 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine($"Removed {value} from the List.");
 						Console.WriteLine($"Current list count: {theList.Count}");
 						Console.WriteLine($"Current list capacity: {theList.Capacity}");
+						break;
+					case '0':
+						Console.WriteLine("Going back to main menu");
 						break;
 					default:
 						Console.WriteLine("You must start your input with the + or - operator.");
@@ -215,6 +223,9 @@ namespace SkalProj_Datastrukturer_Minne
 						myQueue.Dequeue();
 						Console.WriteLine($"Current queue count: {myQueue.Count}");
 						break;
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
 					default:
 						Console.WriteLine("You must start your input with the + or - operator.");
 						break;
@@ -232,20 +243,108 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+			Stack<string> myStack = new Stack<string>();
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. +Kalle to add to stack. - to remove from stack");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Substring(1).Trim();
+
+				switch (navigation)
+				{
+					case '+':
+						myStack.Push(value);
+						Console.WriteLine($"Pushed {value} to the stack.");
+						Console.WriteLine($"Current stack count: {myStack.Count}");
+						break;
+					case '-':
+						Console.WriteLine($"Removed {myStack.Peek()} from the stack.");
+						// todo: add logic to check peek before pop, use tryPeek maybe
+						myStack.Pop();
+						Console.WriteLine($"Current stack count: {myStack.Count}");
+						break;
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine("You must start your input with the + or - operator.");
+						break;
+				}
+			}
+			/*
+				Frågor
+				1. Simulera ännu en gång ICA-kön på papper. Denna gång med en stack. 
+				Varför är det inte så smart att använda en stack i det här fallet?
+
+				Därför att en stack lägger det senaste värdet högst upp på stacken,
+				precis som en travle tallrikar där man lägger den senaste tallriken högst upp.
+				Så den senaste tallriken som är lagt på stacken är också den första
+				som kommer att användas. Om vi verkligen vill använda en stack som en kö
+				kan vi traversera till det nedersta itemet i stacken och poppa det.
+				Men det är extremt ineffektivt och rekommenderas inte.
+			*/
+		}
+
+		// todo: make method comment
+		static void ReverseText()
+		{
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise write a string that you want to reverse using a stack");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"Reversed text: {ReverseText(value)}");
+						break;
+				}
+			}
+		}
+
+		// todo: make method comment
+		static string ReverseText(string text)
+		{
+			Stack<char> characters = new Stack<char>(text.Length); // create stack correct size
+
+			// Add each character to the stack
+			foreach (char c in text)
+			{
+				characters.Push(c);
+			}
+
+			// Build string to return
+			StringBuilder result = new StringBuilder();
+
+			// Pop each char off the stack
+			foreach (char c in characters)
+			{
+				result.Append(c);
+			}
+
+			return result.ToString();
 		}
 
 		static void CheckParanthesis()
 		{
 			/*
-             * Use this method to check if the paranthesis in a string is Correct or incorrect.
-             * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
-             * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
-             */
+			 * Use this method to check if the paranthesis in a string is Correct or incorrect.
+			 * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
+			 * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
+			 */
 
 		}
-
-
-
 	}
 }
-
