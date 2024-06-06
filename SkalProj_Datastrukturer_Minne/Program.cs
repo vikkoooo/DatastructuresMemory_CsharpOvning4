@@ -403,54 +403,47 @@ namespace SkalProj_Datastrukturer_Minne
 				{ '<', '>' }
 			};
 
-			// create datastructures
-			Stack<char> openers = new Stack<char>(); // doesnt matter which order we iterate so stack is efficient
-			LinkedList<char> closers = new LinkedList<char>(); // because of lots of remove in the middle of the list randomly
+			// create datastructure
+			Stack<char> openers = new Stack<char>(); // stack to keep track of latest opener
 
-			// fill datastructures with openers and closers
+			// fill datastructures with openers
 			foreach (char c in text)
 			{
 				// check openers
 				if (pairs.ContainsKey(c))
 				{
-					openers.Push(c);
+					openers.Push(c); // push opener to stack
 
 				} // check closers
 				else if (pairs.ContainsValue(c))
 				{
-					closers.AddLast(c);
+					// if opening stack is empty we have already failed, do early exit
+					if (openers.Count == 0)
+					{
+						return false;
+					}
+					// algoritm is: if stack does not contain the corresponding opener on top of the stack we have failed
+					// steps:
+					// peek stack with opening bracket and we get closing bracket corresponder,
+					// if this is equal to our current char we are evaluating we have a good match - so we can remove it from stack and continue
+					if (pairs[openers.Peek()] == c)
+					{
+						var tmp = pairs[openers.Pop()]; // just pop and throw away
+					}
+					// we end up here when they did not match - this means we have failed
+					else
+					{
+						return false;
+					}
 				}
 			}
 
-			// easy exit if mismatch in size
-			if (openers.Count != closers.Count)
-			{
-				return false;
-			}
-
-			// now attempt to empty the stack
-			while (openers.Count > 0)
-			{
-				char opener = openers.Peek();
-				char closer = pairs[opener];
-
-				if (closers.Contains(closer))
-				{
-					openers.Pop();
-					closers.Remove(closer);
-				}
-				else
-				{
-					return false;
-				}
-			}
-
-			// we should end up here if both datastructures was cleared successfully
-			if (openers.Count == 0 && closers.Count == 0)
+			// if all was successfully we should now have an empty stack
+			if (openers.Count == 0)
 			{
 				return true;
 			}
-			return false;
+			return false; // if we end up here for some reason we have failed
 		}
 
 		// todo: reformat and write method comment
