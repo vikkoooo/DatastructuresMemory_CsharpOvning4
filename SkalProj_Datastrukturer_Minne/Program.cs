@@ -523,14 +523,14 @@ namespace SkalProj_Datastrukturer_Minne
 		private static int FibonacciRecursive(int n)
 		{
 			// Base case
-			if (n <= 1)
+			if (n <= 1) // or actually "n == 0 || n == 1" to make it clearer. both start points return n.
 			{
 				return n;
 			}
-			// Recursive case
+			// Recursive case f(n) = f(n-1) + f(n-2), function is same as return statement
 			else
 			{
-				return FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2);
+				return (FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2));
 			}
 		}
 
@@ -553,14 +553,14 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using iterative logic: {IterativeEven(value)}");
+						Console.WriteLine($"The n:th even number using iterative logic: {IterativeEven(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
 		// Todo: implement logic
-		private static object IterativeEven(string value)
+		private static int IterativeEven(int value)
 		{
 			throw new NotImplementedException();
 		}
@@ -584,16 +584,34 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using iterative logic: {FibonacciIterative(value)}");
+						Console.WriteLine($"The fibonacci number using iterative logic: {FibonacciIterative(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
 		// todo: implement logic
-		private static object FibonacciIterative(string value)
+		private static int FibonacciIterative(int n)
 		{
-			throw new NotImplementedException();
+			int current = 1; // fib current
+			int prev = current - 1; // fib one behind
+			int tmp = 0; // temp storage 
+
+			// base case, same here - it actually represents both "n == 0 || n == 1" since they are the starting points
+			if (n <= 1)
+			{
+				current = n;
+			}
+			else
+			{
+				for (int i = 2; i <= n; i++) // start at n = 2 since base case covers 0 and 1 by default
+				{
+					tmp = current; // will become one behind
+					current = current + prev; // add fib current with fib one behind to get new current
+					prev = tmp; // fib one behind will be whatever fib current was before the move
+				}
+			}
+			return current;
 		}
 	}
 }
