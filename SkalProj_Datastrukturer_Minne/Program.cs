@@ -560,9 +560,15 @@ namespace SkalProj_Datastrukturer_Minne
 		}
 
 		// Todo: implement logic
-		private static int IterativeEven(int value)
+		private static int IterativeEven(int n)
 		{
-			throw new NotImplementedException();
+			int result = 0;
+
+			for (int i = 0; i < n - 1; i++)
+			{
+				result += 2;
+			}
+			return result;
 		}
 
 		// todo: reformat and implement method logic
@@ -613,5 +619,13 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 			return current;
 		}
+
+
+
+		/* Fråga:
+			Q:	Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av ovanstående funktionerär mest minnesvänlig och varför?
+			A:	Gällande fibonacci är rekursiva fallet mest minnesvänligt. Fibonacciexemplet är det klassiska skolboksexemplet på när rekursion är det mest 
+				effektiva sättet att lösa uppgiften
+		*/
 	}
 }
