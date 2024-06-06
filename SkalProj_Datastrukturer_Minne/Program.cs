@@ -59,12 +59,16 @@ namespace SkalProj_Datastrukturer_Minne
 
 			while (true)
 			{
-				Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+				Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) of your choice"
 					+ "\n1. Examine a List"
 					+ "\n2. Examine a Queue"
 					+ "\n3. Examine a Stack"
 					+ "\n4. CheckParenthesis"
 					+ "\n5. ReverseText using Stack"
+					+ "\n6. RecursiveEven calculate the n:th number"
+					+ "\n7. Fibonacci recursive function"
+					+ "\n8. IterativeEven calculate the n:th number"
+					+ "\n9. Fibonacci iterative function"
 					+ "\n0. Exit the application");
 				char input = ' '; //Creates the character input to be used with the switch-case below.
 				try
@@ -93,6 +97,18 @@ namespace SkalProj_Datastrukturer_Minne
 					case '5':
 						ReverseText();
 						break;
+					case '6':
+						RecursiveEven();
+						break;
+					case '7':
+						FibonacciRecursive();
+						break;
+					case '8':
+						IterativeEven();
+						break;
+					case '9':
+						FibonacciIterative();
+						break;
 					/*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
@@ -101,11 +117,12 @@ namespace SkalProj_Datastrukturer_Minne
 						Environment.Exit(0);
 						break;
 					default:
-						Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5)");
+						Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)");
 						break;
 				}
 			}
 		}
+
 
 		/// <summary>
 		/// Examines the datastructure List
@@ -374,6 +391,7 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
+		// todo: fix implementation of algorithm. ({)} case not ok
 		static bool CheckParanthesis(string text)
 		{
 			// define the pairs, key = openeing and value = closing
@@ -433,6 +451,130 @@ namespace SkalProj_Datastrukturer_Minne
 				return true;
 			}
 			return false;
+		}
+
+		// todo: reformat and write method comment
+		private static void RecursiveEven()
+		{
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the number n:th even number using recursive logic");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"The n:th even number using recursive logic: {RecursiveEven(value)}");
+						break;
+				}
+			}
+		}
+
+		// todo: implement
+		private static int RecursiveEven(string value)
+		{
+			throw new NotImplementedException();
+		}
+
+		// todo: reformat and write method comment
+		private static void FibonacciRecursive()
+		{
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the fibonacci number using recursive logic");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"The fibonacci number using recursive logic: {FibonacciRecursive(value)}");
+						break;
+				}
+			}
+		}
+
+		// todo: implement logic
+		private static int FibonacciRecursive(string value)
+		{
+			throw new NotImplementedException();
+		}
+
+		// todo: reformat and write method comment
+		private static void IterativeEven()
+		{
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the number n:th even number using iterative logic");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"The n:th even number using iterative logic: {IterativeEven(value)}");
+						break;
+				}
+			}
+		}
+
+		// Todo: implement logic
+		private static object IterativeEven(string value)
+		{
+			throw new NotImplementedException();
+		}
+
+		// todo: reformat and implement method logic
+		private static void FibonacciIterative()
+		{
+			char navigation = ' ';
+
+			while (navigation != '0')
+			{
+				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the fibonacci number using recursive logic");
+				// TODO: validate input, maybe break out to other method
+				string input = Console.ReadLine();
+				navigation = input[0];
+				string value = input.Trim();
+
+				switch (navigation)
+				{
+					case '0':
+						Console.WriteLine("Going back to main menu");
+						break;
+					default:
+						Console.WriteLine($"The fibonacci number using iterative logic: {FibonacciIterative(value)}");
+						break;
+				}
+			}
+		}
+
+		// todo: implement logic
+		private static object FibonacciIterative(string value)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
