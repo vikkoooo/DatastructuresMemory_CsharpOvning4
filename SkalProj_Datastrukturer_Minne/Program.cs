@@ -472,16 +472,26 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using recursive logic: {RecursiveEven(value)}");
+						Console.WriteLine($"The n:th even number using recursive logic: {RecursiveEven(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
 		// todo: implement
-		private static int RecursiveEven(string value)
+		private static int RecursiveEven(int n)
 		{
-			throw new NotImplementedException();
+			// Base case 
+			if (n == 1)
+			{
+				return 0;
+			}
+			// Recursive case
+			else
+			{
+				return (RecursiveEven(n - 1) + 2);
+			}
+
 		}
 
 		// todo: reformat and write method comment
@@ -503,16 +513,25 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using recursive logic: {FibonacciRecursive(value)}");
+						Console.WriteLine($"The fibonacci number using recursive logic: {FibonacciRecursive(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
 		// todo: implement logic
-		private static int FibonacciRecursive(string value)
+		private static int FibonacciRecursive(int n)
 		{
-			throw new NotImplementedException();
+			// Base case
+			if (n <= 1)
+			{
+				return n;
+			}
+			// Recursive case
+			else
+			{
+				return FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2);
+			}
 		}
 
 		// todo: reformat and write method comment
