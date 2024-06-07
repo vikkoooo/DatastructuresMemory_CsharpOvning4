@@ -48,15 +48,14 @@ using System.Text;
 
 namespace SkalProj_Datastrukturer_Minne
 {
-	class Program
+	internal class Program
 	{
 		/// <summary>
 		/// The main method, vill handle the menues for the program
 		/// </summary>
 		/// <param name="args"></param>
-		static void Main()
+		private static void Main()
 		{
-
 			while (true)
 			{
 				Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) of your choice"
@@ -127,7 +126,7 @@ namespace SkalProj_Datastrukturer_Minne
 		/// <summary>
 		/// Examines the datastructure List
 		/// </summary>
-		static void ExamineList()
+		private static void ExamineList()
 		{
 			/*
              * Loop this method untill the user inputs something to exit to main menue.
@@ -209,7 +208,7 @@ namespace SkalProj_Datastrukturer_Minne
 		/// <summary>
 		/// Examines the datastructure Queue
 		/// </summary>
-		static void ExamineQueue()
+		private static void ExamineQueue()
 		{
 			/*
              * Loop this method untill the user inputs something to exit to main menue.
@@ -253,7 +252,7 @@ namespace SkalProj_Datastrukturer_Minne
 		/// <summary>
 		/// Examines the datastructure Stack
 		/// </summary>
-		static void ExamineStack()
+		private static void ExamineStack()
 		{
 			/*
              * Loop this method until the user inputs something to exit to main menue.
@@ -307,7 +306,7 @@ namespace SkalProj_Datastrukturer_Minne
 		}
 
 		// todo: make method comment
-		static void ReverseText()
+		private static void ReverseText()
 		{
 			char navigation = ' ';
 
@@ -325,36 +324,15 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"Reversed text: {ReverseText(value)}");
+						Console.WriteLine($"Reversed text: {Helpers.ReverseText(value)}");
 						break;
 				}
 			}
 		}
 
-		// todo: make method comment
-		static string ReverseText(string text)
-		{
-			Stack<char> characters = new Stack<char>(text.Length); // create stack correct size
 
-			// Add each character to the stack
-			foreach (char c in text)
-			{
-				characters.Push(c);
-			}
 
-			// Build string to return
-			StringBuilder result = new StringBuilder();
-
-			// Pop each char off the stack
-			foreach (char c in characters)
-			{
-				result.Append(c);
-			}
-
-			return result.ToString();
-		}
-
-		static void CheckParanthesis()
+		private static void CheckParanthesis()
 		{
 			/*
 			 * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -385,66 +363,13 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"Paranthesis correct: {CheckParanthesis(value)}");
+						Console.WriteLine($"Paranthesis correct: {Helpers.CheckParanthesis(value)}");
 						break;
 				}
 			}
 		}
 
-		// todo: fix implementation of algorithm. ({)} case not ok
-		static bool CheckParanthesis(string text)
-		{
-			// define the pairs, key = openeing and value = closing
-			Dictionary<char, char> pairs = new Dictionary<char, char>
-			{
-				{ '(', ')' },
-				{ '{', '}' },
-				{ '[', ']' },
-				{ '<', '>' }
-			};
 
-			// create datastructure
-			Stack<char> openers = new Stack<char>(); // stack to keep track of latest opener
-
-			// fill datastructures with openers
-			foreach (char c in text)
-			{
-				// check openers
-				if (pairs.ContainsKey(c))
-				{
-					openers.Push(c); // push opener to stack
-
-				} // check closers
-				else if (pairs.ContainsValue(c))
-				{
-					// if opening stack is empty we have already failed, do early exit
-					if (openers.Count == 0)
-					{
-						return false;
-					}
-					// algoritm is: if stack does not contain the corresponding opener on top of the stack we have failed
-					// steps:
-					// peek stack with opening bracket and we get closing bracket corresponder,
-					// if this is equal to our current char we are evaluating we have a good match - so we can remove it from stack and continue
-					if (pairs[openers.Peek()] == c)
-					{
-						var tmp = pairs[openers.Pop()]; // just pop and throw away
-					}
-					// we end up here when they did not match - this means we have failed
-					else
-					{
-						return false;
-					}
-				}
-			}
-
-			// if all was successfully we should now have an empty stack
-			if (openers.Count == 0)
-			{
-				return true;
-			}
-			return false; // if we end up here for some reason we have failed
-		}
 
 		// todo: reformat and write method comment
 		private static void RecursiveEven()
@@ -465,27 +390,13 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using recursive logic: {RecursiveEven(int.Parse(value))}");
+						Console.WriteLine($"The n:th even number using recursive logic: {Helpers.RecursiveEven(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
-		// todo: implement
-		private static int RecursiveEven(int n)
-		{
-			// Base case 
-			if (n == 1)
-			{
-				return 0;
-			}
-			// Recursive case
-			else
-			{
-				return (RecursiveEven(n - 1) + 2);
-			}
 
-		}
 
 		// todo: reformat and write method comment
 		private static void FibonacciRecursive()
@@ -506,26 +417,13 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using recursive logic: {FibonacciRecursive(int.Parse(value))}");
+						Console.WriteLine($"The fibonacci number using recursive logic: {Helpers.FibonacciRecursive(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
-		// todo: implement logic
-		private static int FibonacciRecursive(int n)
-		{
-			// Base case
-			if (n <= 1) // or actually "n == 0 || n == 1" to make it clearer. both start points return n.
-			{
-				return n;
-			}
-			// Recursive case f(n) = f(n-1) + f(n-2), function is same as return statement
-			else
-			{
-				return (FibonacciRecursive(n - 1) + FibonacciRecursive(n - 2));
-			}
-		}
+
 
 		// todo: reformat and write method comment
 		private static void IterativeEven()
@@ -546,23 +444,13 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using iterative logic: {IterativeEven(int.Parse(value))}");
+						Console.WriteLine($"The n:th even number using iterative logic: {Helpers.IterativeEven(int.Parse(value))}");
 						break;
 				}
 			}
 		}
 
-		// Todo: implement logic
-		private static int IterativeEven(int n)
-		{
-			int result = 0;
 
-			for (int i = 0; i < n - 1; i++)
-			{
-				result += 2;
-			}
-			return result;
-		}
 
 		// todo: reformat and implement method logic
 		private static void FibonacciIterative()
@@ -583,36 +471,11 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using iterative logic: {FibonacciIterative(int.Parse(value))}");
+						Console.WriteLine($"The fibonacci number using iterative logic: {Helpers.FibonacciIterative(int.Parse(value))}");
 						break;
 				}
 			}
 		}
-
-		// todo: implement logic
-		private static int FibonacciIterative(int n)
-		{
-			int current = 1; // fib current
-			int prev = current - 1; // fib one behind
-			int tmp = 0; // temp storage 
-
-			// base case, same here - it actually represents both "n == 0 || n == 1" since they are the starting points
-			if (n <= 1)
-			{
-				current = n;
-			}
-			else
-			{
-				for (int i = 2; i <= n; i++) // start at n = 2 since base case covers 0 and 1 by default
-				{
-					tmp = current; // will become one behind
-					current = current + prev; // add fib current with fib one behind to get new current
-					prev = tmp; // fib one behind will be whatever fib current was before the move
-				}
-			}
-			return current;
-		}
-
 
 
 		/* Fråga:
