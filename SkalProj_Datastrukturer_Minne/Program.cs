@@ -120,7 +120,7 @@ namespace SkalProj_Datastrukturer_Minne
 		private static void ExamineList()
 		{
 			/*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menu.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
@@ -128,31 +128,37 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
-
 			List<string> theList = new List<string>();
 			char nav = ' ';
+			string? value;
 
-			do
+			Console.WriteLine(
+				"\n" + "Example: Write +Adam to add \"Adam\" to the list"
+				+ "\n" + "Write -Adam to remove \"Adam\" from the list"
+				+ "\n" + "Write 0 to exit to main menu.+" + "\n");
+
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. +Adam to add Adam to list. -Adam to remove Adam from list.");
+				(nav, value) = GetInput();
 
-				// Fetch user input and break out the +/- operator, and its substring.
-				// todo: handle null input from user, maybe break out to other method
-				string input = Console.ReadLine();
-				nav = input[0];
-				string value = input.Substring(1).Trim(); // remove trailing and leading blankspaces
 				switch (nav)
 				{
 					case '+':
 						theList.Add(value);
-						Console.WriteLine($"Added {value} to the List.");
+						Console.WriteLine($"Added {value} to the list");
 						Console.WriteLine($"Current list count: {theList.Count}");
 						Console.WriteLine($"Current list capacity: {theList.Capacity}");
 						break;
 					case '-':
-						// todo: add logic to find that the list actually contains value before removing
-						theList.Remove(value);
-						Console.WriteLine($"Removed {value} from the List.");
+						if (theList.Contains(value))
+						{
+							theList.Remove(value);
+							Console.WriteLine($"Removed {value} from the list");
+						}
+						else
+						{
+							Console.WriteLine($"Did not find {value} in the list");
+						}
 						Console.WriteLine($"Current list count: {theList.Count}");
 						Console.WriteLine($"Current list capacity: {theList.Capacity}");
 						break;
@@ -163,9 +169,7 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine("You must start your input with the + or - operator.");
 						break;
 				}
-			} while (nav != '0');
-
-
+			}
 			/*
 				Frågor
 				2. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek)
@@ -365,8 +369,6 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-
-
 		// todo: make method comment
 		private static void RecursiveEven()
 		{
@@ -401,85 +403,103 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-		// todo: reformat and write method comment
+		// todo: write method comment
 		private static void FibonacciRecursive()
 		{
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the fibonacci number using recursive logic");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a number without decimals to calculate the fibonacci number using recursive logic"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using recursive logic: {Helpers.FibonacciRecursive(int.Parse(value))}");
+						if (int.TryParse(text, out int number))
+						{
+							Console.WriteLine($"The fibonacci number using recursive logic: {Helpers.FibonacciRecursive(number)}");
+						}
+						else
+						{
+							Console.WriteLine("Invalid number. Please enter a valid integer.");
+						}
 						break;
 				}
 			}
 		}
 
-
-
-		// todo: reformat and write method comment
+		// todo: write method comment
 		private static void IterativeEven()
 		{
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the number n:th even number using iterative logic");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a number without decimals to calculate the number n:th even number using iterative logic"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using iterative logic: {Helpers.IterativeEven(int.Parse(value))}");
+						if (int.TryParse(text, out int number))
+						{
+							Console.WriteLine($"The n:th even number using iterative logic: {Helpers.IterativeEven(number)}");
+						}
+						else
+						{
+							Console.WriteLine("Invalid number. Please enter a valid integer.");
+						}
 						break;
 				}
 			}
 		}
 
-
-
-		// todo: reformat and implement method logic
+		// todo: make comment
 		private static void FibonacciIterative()
 		{
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the fibonacci number using recursive logic");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a number without decimals to calculate the fibonacci number using iterative logic"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The fibonacci number using iterative logic: {Helpers.FibonacciIterative(int.Parse(value))}");
+						if (int.TryParse(text, out int number))
+						{
+							Console.WriteLine($"The fibonacci number using iterative logic: {Helpers.FibonacciIterative(number)}");
+						}
+						else
+						{
+							Console.WriteLine("Invalid number. Please enter a valid integer.");
+						}
 						break;
 				}
 			}
 		}
 
+		// make comment
 		private static (char, string) GetInput()
 		{
 			string input = Console.ReadLine()!;
@@ -495,8 +515,6 @@ namespace SkalProj_Datastrukturer_Minne
 			string subString = input.Length > 1 ? input.Substring(1).Trim() : string.Empty;
 			return (nav, subString);
 		}
-
-
 		/* Fråga:
 			Q:	Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av ovanstående funktionerär mest minnesvänlig och varför?
 			A:	Gällande fibonacci är rekursiva fallet mest minnesvänligt. Fibonacciexemplet är det klassiska skolboksexemplet på när rekursion är det mest 
