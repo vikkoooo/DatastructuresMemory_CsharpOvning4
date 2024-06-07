@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.XPath;
 
 /*
  Frågor:
@@ -51,14 +52,15 @@ namespace SkalProj_Datastrukturer_Minne
 	internal class Program
 	{
 		/// <summary>
-		/// The main method, vill handle the menues for the program
+		/// The main method, will handle the menus for the program
 		/// </summary>
 		/// <param name="args"></param>
 		private static void Main()
 		{
 			while (true)
 			{
-				Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) of your choice"
+				Console.WriteLine(
+					"Please navigate through the menu by inputting the number \n(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) of your choice"
 					+ "\n1. Examine a List"
 					+ "\n2. Examine a Queue"
 					+ "\n3. Examine a Stack"
@@ -69,17 +71,10 @@ namespace SkalProj_Datastrukturer_Minne
 					+ "\n8. IterativeEven calculate the n:th number"
 					+ "\n9. Fibonacci iterative function"
 					+ "\n0. Exit the application");
-				char input = ' '; //Creates the character input to be used with the switch-case below.
-				try
-				{
-					input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
-				}
-				catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-				{
-					Console.Clear();
-					Console.WriteLine("Please enter some input!");
-				}
-				switch (input)
+
+				var (nav, text) = GetInput(); // Replace with cleaner input
+
+				switch (nav)
 				{
 					case '1':
 						ExamineList();
@@ -108,10 +103,6 @@ namespace SkalProj_Datastrukturer_Minne
 					case '9':
 						FibonacciIterative();
 						break;
-					/*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
 					case '0':
 						Environment.Exit(0);
 						break;
@@ -211,31 +202,33 @@ namespace SkalProj_Datastrukturer_Minne
 		private static void ExamineQueue()
 		{
 			/*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menu.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
 			Queue<string> myQueue = new Queue<string>();
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. +Kalle to add to queue. - to remove from queue");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Substring(1).Trim();
+				Console.WriteLine(
+					"\n" + "Example: Write +Kalle to add \"Kalle\" to queue"
+					+ "\n" + "Write - to remove the next person from the queue"
+					+ "\n" + "Write 0 to exit to main menu.+" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '+':
-						myQueue.Enqueue(value);
-						Console.WriteLine($"Added {value} to the Queue.");
+						myQueue.Enqueue(text);
+						Console.WriteLine($"Added {text} to the queue.");
 						Console.WriteLine($"Current queue count: {myQueue.Count}");
 						break;
 					case '-':
-						Console.WriteLine($"Removed {myQueue.Peek()} from the queue.");
 						// todo: add logic to check peek before dequeue, use tryPeek maybe
+						// there must be something to peek before peeking
+						Console.WriteLine($"Removed {myQueue.Peek()} from the queue.");
 						myQueue.Dequeue();
 						Console.WriteLine($"Current queue count: {myQueue.Count}");
 						break;
@@ -475,6 +468,22 @@ namespace SkalProj_Datastrukturer_Minne
 						break;
 				}
 			}
+		}
+
+		private static (char, string) GetInput()
+		{
+			string input = Console.ReadLine()!;
+
+			// Early exit if user input error
+			if (string.IsNullOrEmpty(input))
+			{
+				return (' ', string.Empty);
+			}
+
+			char nav = input[0];
+			// If string is long enough to get a substring from set substring, else set empty string
+			string subString = input.Length > 1 ? input.Substring(1).Trim() : string.Empty;
+			return (nav, subString);
 		}
 
 
