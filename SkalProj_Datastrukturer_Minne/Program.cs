@@ -226,10 +226,15 @@ namespace SkalProj_Datastrukturer_Minne
 						Console.WriteLine($"Current queue count: {myQueue.Count}");
 						break;
 					case '-':
-						// todo: add logic to check peek before dequeue, use tryPeek maybe
-						// there must be something to peek before peeking
-						Console.WriteLine($"Removed {myQueue.Peek()} from the queue.");
-						myQueue.Dequeue();
+						if (myQueue.Count > 0)
+						{
+							Console.WriteLine($"Removed {myQueue.Peek()} from the queue.");
+							myQueue.Dequeue();
+						}
+						else
+						{
+							Console.WriteLine("Queue is empty.");
+						}
 						Console.WriteLine($"Current queue count: {myQueue.Count}");
 						break;
 					case '0':
@@ -248,32 +253,39 @@ namespace SkalProj_Datastrukturer_Minne
 		private static void ExamineStack()
 		{
 			/*
-             * Loop this method until the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menu.
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
 			Stack<string> myStack = new Stack<string>();
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. +Kalle to add to stack. - to remove from stack");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Substring(1).Trim();
+				Console.WriteLine(
+					"\n" + "Example: Write +Kalle to add \"Kalle\" to stack"
+					+ "\n" + "Write - to remove the top item from the stack"
+					+ "\n" + "Write 0 to exit to main menu." + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '+':
-						myStack.Push(value);
-						Console.WriteLine($"Pushed {value} to the stack.");
+						myStack.Push(text);
+						Console.WriteLine($"Pushed {text} to the stack.");
 						Console.WriteLine($"Current stack count: {myStack.Count}");
 						break;
 					case '-':
-						Console.WriteLine($"Removed {myStack.Peek()} from the stack.");
-						// todo: add logic to check peek before pop, use tryPeek maybe
-						myStack.Pop();
+						if (myStack.Count > 0)
+						{
+							Console.WriteLine($"Removed {myStack.Peek()} from the stack.");
+							myStack.Pop();
+						}
+						else
+						{
+							Console.WriteLine("Stack is empty.");
+						}
 						Console.WriteLine($"Current stack count: {myStack.Count}");
 						break;
 					case '0':
