@@ -313,30 +313,29 @@ namespace SkalProj_Datastrukturer_Minne
 		// todo: make method comment
 		private static void ReverseText()
 		{
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise write a string that you want to reverse using a stack");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a string that you want to reverse using a stack"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"Reversed text: {Helpers.ReverseText(value)}");
+						Console.WriteLine($"Reversed text: {Helpers.ReverseText(text)}");
 						break;
 				}
 			}
 		}
 
-
-
+		// todo: make method comment
 		private static void CheckParanthesis()
 		{
 			/*
@@ -344,31 +343,23 @@ namespace SkalProj_Datastrukturer_Minne
 			 * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
 			 * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
 			 */
+			char nav = ' ';
+			string? text;
 
-			// setup rules datastructure where we have what matches what
-			// 1. get input
-			// 2. iterate string and put all opening chars to some datastructure and push all closing chars to other datastructure
-			// 3. iterate the opening datastructure and try find its corresponding closer in other datastructure, if match remove both
-			// 4. do above until empty one empty. if both empty its success otherwise its false.
-			// 5. present result.
-
-			char navigation = ' ';
-
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise write a string that you want to check if paranthesis is correct");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a string that you want to check if paranthesis is correct"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"Paranthesis correct: {Helpers.CheckParanthesis(value)}");
+						Console.WriteLine($"Paranthesis correct: {Helpers.CheckParanthesis(text)}");
 						break;
 				}
 			}
@@ -376,26 +367,33 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-		// todo: reformat and write method comment
+		// todo: make method comment
 		private static void RecursiveEven()
 		{
-			char navigation = ' ';
+			char nav = ' ';
+			string? text;
 
-			while (navigation != '0')
+			while (nav != '0')
 			{
-				Console.WriteLine("Write 0 to exit to main menu. Otherwise a number without decimals to calculate the number n:th even number using recursive logic");
-				// TODO: validate input, maybe break out to other method
-				string input = Console.ReadLine();
-				navigation = input[0];
-				string value = input.Trim();
+				Console.WriteLine(
+					"\n" + "Write a number without decimals to calculate the number n:th even number using recursive logic"
+					+ "\n" + "Write 0 to exit to main menu" + "\n");
+				(nav, text) = GetInput();
 
-				switch (navigation)
+				switch (nav)
 				{
 					case '0':
 						Console.WriteLine("Going back to main menu");
 						break;
 					default:
-						Console.WriteLine($"The n:th even number using recursive logic: {Helpers.RecursiveEven(int.Parse(value))}");
+						if (int.TryParse(text, out int number))
+						{
+							Console.WriteLine($"The n:th even number using recursive logic: {Helpers.RecursiveEven(number)}");
+						}
+						else
+						{
+							Console.WriteLine("Invalid number. Please enter a valid integer.");
+						}
 						break;
 				}
 			}
