@@ -72,7 +72,7 @@ namespace SkalProj_Datastrukturer_Minne
 					+ "\n9. Fibonacci iterative function"
 					+ "\n0. Exit the application");
 
-				var (nav, text) = GetInput(); // Replace with cleaner input
+				var (nav, text) = GetInput(); // Replaced with cleaner input
 
 				switch (nav)
 				{
@@ -112,7 +112,6 @@ namespace SkalProj_Datastrukturer_Minne
 				}
 			}
 		}
-
 
 		/// <summary>
 		/// Examines the datastructure List
