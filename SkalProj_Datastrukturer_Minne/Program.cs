@@ -314,7 +314,10 @@ namespace SkalProj_Datastrukturer_Minne
 			*/
 		}
 
-		// todo: make method comment
+		/// <summary>
+		/// Reverses the input string using a stack until the user exits to the main menu.
+		/// Prompts the user to input a string to reverse and displays the reversed string.
+		/// </summary>
 		private static void ReverseText()
 		{
 			char nav = ' ';
@@ -339,7 +342,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-		// todo: make method comment
+		/// <summary>
+		/// Checks if the parentheses in a string are correct or incorrect until the user exits to the main menu.
+		/// Prompts the user to input a string to check for correct parentheses and displays the result.
+		/// </summary>
 		private static void CheckParanthesis()
 		{
 			/*
@@ -369,7 +375,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-		// todo: make method comment
+		/// <summary>
+		/// Calculates the n-th even number using recursive logic until the user exits to the main menu.
+		/// Prompts the user to input a number and displays the n-th even number.
+		/// </summary>
 		private static void RecursiveEven()
 		{
 			char nav = ' ';
@@ -401,9 +410,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-
-
-		// todo: write method comment
+		/// <summary>
+		/// Calculates the Fibonacci number using recursive logic until the user exits to the main menu.
+		/// Prompts the user to input a number and displays the Fibonacci number.
+		/// </summary>
 		private static void FibonacciRecursive()
 		{
 			char nav = ' ';
@@ -435,7 +445,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-		// todo: write method comment
+		/// <summary>
+		/// Calculates the n-th even number using iterative logic until the user exits to the main menu.
+		/// Prompts the user to input a number and displays the n-th even number.
+		/// </summary>
 		private static void IterativeEven()
 		{
 			char nav = ' ';
@@ -467,7 +480,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-		// todo: make comment
+		/// <summary>
+		/// Calculates the Fibonacci number using iterative logic until the user exits to the main menu.
+		/// Prompts the user to input a number and displays the Fibonacci number.
+		/// </summary>
 		private static void FibonacciIterative()
 		{
 			char nav = ' ';
@@ -499,7 +515,10 @@ namespace SkalProj_Datastrukturer_Minne
 			}
 		}
 
-		// make comment
+		/// <summary>
+		/// Retrieves input from the user and separates the navigation character from the rest of the input.
+		/// Returns a tuple containing the navigation character and the remaining input string.
+		/// </summary>
 		private static (char, string) GetInput()
 		{
 			string input = Console.ReadLine()!;
